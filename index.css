@@ -79,3 +79,25 @@ button {
 button:hover {
   background-color: #357ab8;
 }
+#addForm {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#addForm input {
+  padding: 0.4rem;
+  font-size: 0.9rem;
+  width: 120px;
+}
+
+#jsonEditor {
+  width: 100%;
+  font-family: monospace;
+
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f7f7f7;
+  resize: vertical;
+}

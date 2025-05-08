@@ -101,8 +101,23 @@ document.getElementById("addForm").addEventListener("submit", (e) => {
     alert("ID는 0 이상, 값은 0 이상이어야 합니다.");
   }
 });
+document.getElementById("apply-json").addEventListener("click", () => {
+  try {
+    const newData = JSON.parse(document.getElementById("jsonEditor").value);
+    if (Array.isArray(newData) && newData.every((d) => d.id && typeof d.value === "number")) {
+      data = newData;
+      updateAll();
+    } else {
+      alert("유효한 JSON 형식이 아닙니다.");
+    }
+  } catch (e) {
+    alert("JSON 파싱 오류입니다.");
+  }
+});
 function updateAll() {
   renderCanvasChart();
   renderTable();
+  document.getElementById("jsonEditor").value = JSON.stringify(data, null, 2);
 }
+
 updateAll();
