@@ -79,6 +79,22 @@ document.getElementById("apply-edit").addEventListener("click", () => {
 
   updateAll();
 });
+
+document.getElementById("addForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const id = parseInt(document.getElementById("add-id").value);
+  const value = parseInt(document.getElementById("add-value").value);
+  if (!isNaN(id) && !isNaN(value) && id >= 0 && value >= 0) {
+    if (!data.find((item) => item.id === id)) {
+      data.push({ id, value });
+      updateAll();
+    } else {
+      alert("이미 존재하는 ID입니다.");
+    }
+  } else {
+    alert("ID는 0 이상, 값은 0 이상이어야 합니다.");
+  }
+});
 function updateAll() {
   renderCanvasChart();
   renderTable();
