@@ -9,6 +9,7 @@ let data = [
 const canvas = document.getElementById("dataChart");
 const ctx = canvas.getContext("2d");
 
+// 막대 그래프 차트 렌더링 함수
 function renderCanvasChart() {
   const canvas = document.getElementById("dataChart");
   const ctx = canvas.getContext("2d");
@@ -45,7 +46,22 @@ function renderCanvasChart() {
     ctx.fillText(d.id, x + 7 + barWidth / 4, canvas.height - 10);
   });
 }
+// 값편집 테이블 렌더링 함수
+function renderTable() {
+  const tbody = document.querySelector("#dataTable tbody");
+  tbody.innerHTML = "";
+  data.forEach((item, index) => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${item.id}</td>
+      <td><input type="number" value="${item.value}" data-index="${index}" /></td>
+      <td><button data-index="${index}" class="delete">삭제</button></td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
 function updateAll() {
   renderCanvasChart();
+  renderTable();
 }
 updateAll();
