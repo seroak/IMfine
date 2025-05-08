@@ -79,7 +79,13 @@ document.getElementById("apply-edit").addEventListener("click", () => {
 
   updateAll();
 });
-
+document.querySelector("#dataTable tbody").addEventListener("click", (e) => {
+  if (e.target.classList.contains("delete")) {
+    const idx = e.target.dataset.index;
+    data.splice(idx, 1);
+    updateAll();
+  }
+});
 document.getElementById("addForm").addEventListener("submit", (e) => {
   e.preventDefault();
   const id = parseInt(document.getElementById("add-id").value);
