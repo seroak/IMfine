@@ -60,6 +60,25 @@ function renderTable() {
     tbody.appendChild(tr);
   });
 }
+document.getElementById("apply-edit").addEventListener("click", () => {
+  const dataTableInputs = document.querySelectorAll("#dataTable input");
+  const inputsArray = Array.from(dataTableInputs);
+
+  // 모든 값이 0보다 커야 한다 → 하나라도 0 이하이면 경고
+  const hasInvalid = inputsArray.some((input) => Number(input.value) < 0);
+  if (hasInvalid) {
+    alert("모든 값은 0이상이어야 합니다.");
+    return;
+  }
+
+  // 값 업데이트
+  inputsArray.forEach((input) => {
+    const idx = input.dataset.index;
+    data[idx].value = parseInt(input.value);
+  });
+
+  updateAll();
+});
 function updateAll() {
   renderCanvasChart();
   renderTable();
